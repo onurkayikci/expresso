@@ -1,0 +1,46 @@
+<!--<template name="component_selecter">
+  <div class="control-group">
+    <label>Components</label>
+    <div class="controls">
+      <select class="selectpicker" multiple data-max-options="3">
+        <option class="sl-all">All</option>
+        {{#each options}}
+          {{> option_item }}
+        {{/each}}
+      </select>
+    </div>
+  </div>
+</template>
+
+<template name="option_item">
+    <option value="{{ _id }}" selected="{{ selected }}">{{ name }}</option>
+</template>
+-->
+
+
+<template name="component_selecter">
+  <div class="control-group">
+    <label>Subscribed CAF Blocks</label>
+    <div class="controls">
+      <select class="selectpicker" multiple data-selected-text-format="count>2">
+        <option class="sl-all">All</option>
+        {{#each options}}
+          {{> component_option_group }}
+        {{/each}}
+      </select>
+    </div>
+  </div>
+</template>
+
+<template name="component_option_group">
+ <optgroup label="{{optGroupLabel}}">
+   {{#each component_option_items}}
+     {{> component_option_item }}
+   {{/each}}
+  </optgroup>
+</template>
+
+
+<template name="component_option_item">
+    <option value="{{ _id }}" selected="{{ selected }}">{{ name }}</option>
+</template>

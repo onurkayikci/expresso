@@ -1,0 +1,64 @@
+<template name="notifications">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+    Notifications
+    {{#if notificationCount}}
+      <span class="badge badge-inverse">{{notificationCount}}</span>
+    {{/if}}
+    <b class="caret"></b>
+  </a>
+  <ul class="notification dropdown-menu">
+    {{#if notificationCount}}
+      {{#each notifications}}
+        {{> notificationItem}}
+      {{/each}}
+    {{else}}
+      <li><span>No Notifications</span></li>
+    {{/if}}
+  </ul>
+</template>
+
+<template name="notificationItem">
+  <li>
+    <a href="{{notificationTicketPath}}">
+      <strong>{{commenterName}}</strong> commented on your post
+    </a>
+  </li>
+</template>
+
+
+
+
+<!--<template name="notifications">
+  <div class="col-md-4">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        {{#if notificationCount}}
+        <span class="badge badge-inverse">{{notificationCount}}</span>
+      {{/if}}
+        <h3 class="panel-title">Notifications</h3>
+      </div>
+      <div class="panel-body">
+        {{#if notificationCount}}
+          <div class="list-group">
+            {{#each notifications}}
+              {{> notificationItem}}
+            {{/each}}
+           </div>
+        {{else}}
+        <ul class="list-group">
+          <li class="list-group-item list-group-item-success">No Notifications</li>
+        </ul>
+        {{/if}}
+      </div>
+    </div>
+  </div>
+</template>
+
+
+
+<template name="notificationItem">
+  <a href="{{notificationPath}}" class="list-group-item active">
+    <h4 class="list-group-item-heading">{{derivate}} has changed!</h4>
+    <p class="list-group-item-text">{{changedFields}}</p>
+  </a>
+</template> -->

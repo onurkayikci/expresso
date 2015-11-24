@@ -1,0 +1,46 @@
+<template name="profile_form">
+  <div class="col-md-8">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <div class="panel-title">
+        <i class="glyphicon glyphicon-wrench pull-right"></i>
+        <h4>My Profile</h4>
+      </div>
+    </div>
+    <div class="panel-body">
+      <form class="form form-vertical">
+        <div class="control-group">
+          <label>Email</label>
+          <div class="controls">
+            <input name="address" type="text" class="form-control" value="{{address}}" placeholder="Enter Email" disabled >
+          </div>
+        </div>
+        <div class="control-group">
+          <label>Name</label>
+          <div class="controls">
+            <input name="first_name" type="text" class="form-control" value="{{first_name}}" placeholder="Enter Name">
+          </div>
+        </div>
+        <div class="control-group">
+          <label>Last Name</label>
+          <div class="controls">
+            <input name="last_name" type="text" class="form-control" value="{{last_name}}" placeholder="Enter Last Name">
+          </div>
+        </div>
+        {{>component_selecter}}
+        <div class="control-group">
+          <label></label>
+          <div class="controls">
+            <button type="submit" class="btn btn-primary">
+              Save
+            </button>
+          </div>
+        </div>
+      </form>
+    <!--/panel content-->
+    </div>
+        </div>
+    </div>
+  </template>
+
+

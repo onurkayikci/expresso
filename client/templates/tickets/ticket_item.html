@@ -1,0 +1,13 @@
+<template name="ticketItem">
+  <div class="ticket">
+    <div class="ticket-content">
+      <h3><a href="{{pathFor 'ticketPage'}}">{{ticketTitle}}</a></h3>
+      <p>
+        submitted by {{ticketAuthor}},
+        <a href="{{pathFor 'ticketPage'}}">{{pluralize ticketCommentsCount "comment"}}</a>
+     <!--  {{#if ownTicket}}<a href="{{pathFor 'ticketEdit'}}">Edit</a>{{/if}} -->
+      </p>
+    </div>
+    <span class="{{labelState}}">{{ticketState}}</span>
+  </div>
+</template>

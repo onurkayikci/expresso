@@ -1,0 +1,191 @@
+<template name="block_view">
+  <div class="col-md-8">
+
+    <!--tabs-->
+    <div class="panel">
+      <ul class="nav nav-tabs" id="myTab">
+        <li><a href="#code" data-toggle="tab">Code</a></li>
+        <li><a href="#properties" data-toggle="tab">Properties</a></li>
+        <li><a href="#comments" data-toggle="tab">Comments</a></li>
+        <li><a href="#changeHistory" data-toggle="tab">Change History</a></li>
+        {{>getCAFForm}}
+
+      </ul>
+      <div class="tab-content">
+        <div class="tab-pane panel panel-default" id="changeHistory">
+          <div class="panel-heading">
+            <div class="panel-title">
+              <h5>Change History</h5>
+            </div>
+          </div>
+          <div class="panel-body">
+            <div class="list-group">
+              <a href="#" class="list-group-item active">Hosting virtual mailbox serv..</a>
+              <a href="#" class="list-group-item">Dedicated server doesn't..</a>
+              <a href="#" class="list-group-item">RHEL 6 install on new..</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="tab-pane well" id="comments">
+          <h4><i class="glyphicon glyphicon-comment"></i></h4> Message ipsum dolor sit amet, consectetur adipiscing elit. Duis pharetra varius quam sit amet vulputate.
+          <p>Quisque mauris augu.</p>
+        </div>
+
+        <div class="tab-pane" id="properties">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <div class="panel-title">
+                <ul class="list-inline pull-right">
+                  <li><a title="Edit Properties" data-toggle="modal" href="#addWidgetModal" ><span class="glyphicon glyphicon-wrench  pull-right"></span> </a>  </li>
+                </ul>
+                <h5>{{parameter_title}}</h5>
+              </div>
+            </div>
+            <div class="panel-body">
+              {{#if functionNode}}
+              <label>Code Value:</label>
+              {{codeValue}}
+              {{/if}}
+              {{#if parameterNode}}
+              {{#with functionProperties}}
+              <div>
+                <label>Start Byte:</label>
+                {{start_byte}}
+              </div>
+              <div>
+                <label>End Byte:</label>
+                {{end_byte}}
+              </div>
+              <div>
+                <label>Mask:</label>
+                {{mask}}
+              </div>
+              <div>
+                <label>OBD Relevant:</label>
+                {{obd_relevant}}
+              </div>
+              <div>
+                <label>Special Value:</label>
+                {{special_value}}
+              </div>
+              {{/with}}
+              {{/if}}
+              {{#if blockNode}}
+              {{#with functionProperties}}
+              <div>
+                <label>Version:</label>
+                {{version}}
+              </div>
+              <div>
+                <label>Release:</label>
+                {{release}}
+              </div>
+              <div>
+                <label>Last Changed:</label>
+                {{date}}
+              </div>
+              <div>
+                <label>Changed By:</label>
+                {{changed_by}}
+              </div>
+              <div>
+                <label>i-Stufe:</label>
+                {{i_stufe}}
+              </div>
+              <div>
+                <label>Address:</label>
+                {{address}}
+              </div>
+              <div>
+                <label>Bytes:</label>
+                {{bytes}}
+              </div>
+              {{/with}}
+              {{/if}}
+            </div>
+          </div>
+        </div>
+
+
+        <div class="tab-pane" id="code">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <div class="panel-title">
+                <ul class="list-inline pull-right">
+                  <li><a title="Edit Code" data-toggle="modal" href="#addWidgetModal" ><span class="glyphicon glyphicon-wrench  pull-right"></span> </a>  </li>
+                </ul>
+                <h5>{{parameter_title}} </h5>
+              </div>
+            </div>
+            <div class="panel-body">
+              {{#if functionNode}}
+              {{#each brvs}}
+              <div>
+                <label>{{name}}:</label>
+                {{>code_well}}
+              </div>
+              {{/each}}
+              {{/if}}
+              {{#if parameterNode}}
+              <div class="panel-group" id="accordion">
+                {{#each parameterBRVs}}
+                {{>brvGroup}}
+                {{/each}}
+              </div>
+              {{/if}}
+              {{#if blockNode}}
+              {{#each aktivierungsBedingungen}}
+              <div>
+                <label>Activate {{name}}:</label>
+                {{>code_well}}
+              </div>
+              {{/each}}
+              {{/if}}
+            </div>
+          </div>
+          <!--/panel-->
+        </div>
+      </div>
+    </div>
+    <!--/tabs-->
+  </div>
+</template>
+
+<template name="brvGroup">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <a data-toggle="collapse" data-parent="#accordion" href="#{{brvName}}"><label>{{brvName}}:</label></a>
+    </div>
+    <div id="{{brvName}}" class="panel-collapse collapse in">
+      <div class="panel-body">
+        {{#each variants}}
+        <div>
+          <label>{{variantName}}:</label>
+          {{>code_well}}
+        </div>
+        {{/each}}
+      </div>
+    </div>
+  </div>
+</template>
+
+<template name="code_well">
+  <textarea id="myCodeArea" value="{{code}}"> {{code}}</textarea>
+</template>
+
+<template name="getCAFForm">
+  <form class="form-inline navbar-form navbar-right" role="form">
+    <div class="form-group">
+      <input name="search" type="search" class="form-control input-sm" id="search" placeholder="search">
+    </div>
+    <div class="form-group">
+      <input name="i_stufe" type="text" class="form-control input-sm" id="i_stufe" placeholder="i-stufe">
+    </div>
+    <div class="form-group">
+      <input name="release" type="text" class="form-control input-sm" id="release" placeholder="release">
+    </div>
+    <button type="submit" class="btn btn-primary btn-sm">Get</button>
+  </form>
+</template>
+

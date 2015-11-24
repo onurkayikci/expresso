@@ -1,0 +1,15 @@
+<template name="state_selecter">
+  <div class="state-control-group">
+    <div class="controls">
+      <select class="statepicker">
+        {{#each stateOptions}}
+          {{> state_item }}
+        {{/each}}
+      </select>
+    </div>
+  </div>
+</template>
+
+<template name="state_item">
+    <option value="{{ _id }}" selected="{{ selected }}">{{ state }}</option>
+</template>
